@@ -1,25 +1,33 @@
-Nesse projeto de Gerenciamento de Alunos eu vou fazer um Sistema com as seguintes conceitos em python:
-Variáveis  
-Entrada e saída (input, print)  
-Condições (if / elif / else)  
-Laços (while, for)  
-Listas  
-Dicionários  
-Funções  
-Tratamento simples de erros (try/except)
+# Sistema de Gerenciamento de Alunos
 
-O programa tem as seguintes funcionalidades:
-1 - Cadastrar aluno 
-2 - Listar alunos 
-3 - Buscar aluno 
-4 - Remover aluno 
-5 - Média das notas 
-0 - Sair
+Este projeto consiste em um sistema de gerenciamento de alunos
+desenvolvido em Python, com foco no aprendizado e prática de
+conceitos fundamentais da linguagem.
 
-1 - Cadastrar aluno
+## Conceitos utilizados
+- Variáveis
+- Entrada e saída de dados (`input`, `print`)
+- Estruturas condicionais (`if`, `elif`, `else`)
+- Laços de repetição (`while`, `for`)
+- Listas
+- Dicionários
+- Funções
+- Tratamento simples de erros (`try/except`)
 
-- Nome  
+## Funcionalidades
+- Cadastrar aluno
+- Listar alunos
+- Buscar aluno
+- Remover aluno
+- Calcular média das notas
+- Sair do sistema
+
+## Cadastro de aluno
+Cada aluno possui:
+- Nome
 - RA ou matrícula
-- Lista de notas (ex: 3 notas)    
-- Armazenar tudo em um dicionário
-- Guardar os alunos em uma lista
+- Lista de notas (ex: 3 notas)
+
+Os dados dos alunos são armazenados em:
+- Um dicionário para cada aluno
+- Uma lista contendo todos os alunos cadastrados
