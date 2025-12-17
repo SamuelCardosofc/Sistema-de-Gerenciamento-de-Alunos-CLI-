@@ -24,13 +24,15 @@ alunos = []
 
 aluno = {}
 
-alunos.append(aluno)
+#alunos.append(aluno)
+
 def cadastrar_aluno():
     RM = None
     nome = None
     notas = None
     nota = None
     erro = ""
+    jaTem = False
     while True:
         limpar_tela()
         print("1 - Cadastrar aluno")
@@ -53,8 +55,12 @@ def cadastrar_aluno():
                         erro = "Digite um valor válido para RM. Tente novamente."
                         RM = None
                     else:
-                        aluno["RM"] = RM
-                        break
+                        for aluno in alunos:
+                            if RM == aluno["RM"]:
+                                jaTem = True
+                                break
+                        if jaTem == False:
+                            aluno["RM"] = RM
         print(aluno["RM"])
         break
 
