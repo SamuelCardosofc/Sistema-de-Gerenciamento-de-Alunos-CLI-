@@ -15,11 +15,21 @@ def mostrar_menu():
     print("4 - Remover aluno")
     print("5 - Média das notas")
     print("0 - Sair")
+# ===========================
+# FUNÇÕES DO ENCERRAMENTO
+# ===========================
+
+def encerrar():
+    limpar_tela()
+    print("0 - Sair")
+    print("Programa encerrado")
 
 # ===========================
 # FUNÇÕES DO CADASTRO DE ALUNO
 # ===========================
 
+# teste do loop
+# remover no futuro
 alunos = []
 
 alunos.append({
@@ -42,11 +52,16 @@ def cadastrar_aluno():
     nota = None
     erro = ""
     jaTem = False
+    aluno = {}
+
+    #loop do cadastrar
     while True:
         limpar_tela()
         print("1 - Cadastrar aluno")
         if RM != None:
             print("Digite o nome do aluno: ", RM)
+
+        # loop de validação e adição do RM
         while True:
             limpar_tela()
             print("1 - Cadastrar aluno")
@@ -72,11 +87,9 @@ def cadastrar_aluno():
                                 erro = "Esse RM já existe. Tente novamente."
                                 break
                         if not jaTem:
-                            alunos.append({
-                                "RM": RM
-                            })
+                            aluno["RM"] = RM
             else:
-                print("Digite o RM do aluno: %d" % RM)
+                print("Digite o RM do aluno: %d" % aluno["RM"])
                 break
         break
 
@@ -89,8 +102,7 @@ while True:
     mostrar_menu()
     escolhaMenu = int(input("Digite o número da ação escolhida: "))
     if escolhaMenu == 0:
-        limpar_tela()
-        print("Encerrado")
+        encerrar()
         break
     elif escolhaMenu == 1:
         cadastrar_aluno()
