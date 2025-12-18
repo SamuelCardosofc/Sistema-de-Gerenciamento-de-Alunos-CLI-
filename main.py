@@ -22,9 +22,18 @@ def mostrar_menu():
 
 alunos = []
 
-aluno = {}
+alunos.append({
+    "RM": 123,
+    "nome": "Ana",
+    "nota": [7.5, 8.0, 9.0]
+})
 
-#alunos.append(aluno)
+alunos.append({
+    "RM": 456,
+    "nome": "Beatriz",
+    "nota": [7.5, 8.0, 9.0]
+})
+
 
 def cadastrar_aluno():
     RM = None
@@ -43,6 +52,7 @@ def cadastrar_aluno():
             print("1 - Cadastrar aluno")
             if erro != "":
                 print(erro)
+
             if RM == None:
                 try:
                     RM = float(input("Digite o RM do aluno: "))
@@ -51,17 +61,23 @@ def cadastrar_aluno():
                     RM = None
 
                 if type(RM) == float:
-                    if RM < 0:
+                    if RM <= 0:
                         erro = "Digite um valor válido para RM. Tente novamente."
                         RM = None
                     else:
-                        for aluno in alunos:
-                            if RM == aluno["RM"]:
+                        for i in range(0, len(alunos)):
+                            if RM == alunos[i]["RM"]:
                                 jaTem = True
+                                RM = None
+                                erro = "Esse RM já existe. Tente novamente."
                                 break
-                        if jaTem == False:
-                            aluno["RM"] = RM
-        print(aluno["RM"])
+                        if not jaTem:
+                            alunos.append({
+                                "RM": RM
+                            })
+            else:
+                print("Digite o RM do aluno: %d" % RM)
+                break
         break
 
 # ===========================
