@@ -84,7 +84,11 @@ def cadastrar_aluno():
                     #validações do nome
 
                     nome = input("Digite o nome do aluno: ")
-                    aluno["nome"] = nome
+                    if nome == "":
+                        nome = None
+                        erro = "Nome do aluno não pode estar vazio. Tente novamente."
+                    else:
+                        aluno["nome"] = nome
 
                 else:
                     print("Digite o nome do aluno: %s" % aluno["nome"])
@@ -110,7 +114,6 @@ def cadastrar_aluno():
                         erro = "Entrada inválida. Digite um número ou 'n'."
         alunos.append(aluno)
         break
-    main()
 
 # ===========================
 # FUNÇÕES DO LISTAR ALUNOS
@@ -130,42 +133,82 @@ def listar_alunos():
 
     input("Pressione <enter> para continuar...")
 
+# ===========================
+# FUNÇÕES DO BUSCAR ALUNO
+# ===========================
+
+def buscar_aluno():
+    RM = None
+    nome = None
+    notas = []
+    erro = ""
+    encontrado = False
+    while True:
+        limpar_tela()
+        print("3 - Buscar aluno")
+        if erro != "":
+            print(erro)
+            erro = ""
+
+        if RM == None:
+            # validações do RM
+            try:
+                RM = float(input("Digite o RM do aluno: "))
+            except:
+                erro = "Digite um número pro RM. Tente novamente."
+                RM = None
+
+            if type(RM) == float:
+                if RM <= 0:
+                    erro = "Digite um valor válido para RM. Tente novamente."
+                    RM = None
+                else:
+                    for i in range(0, len(alunos)):
+                        if RM == alunos[i]["RM"]:
+                            encontrado = True
+                            nome = alunos[i]["nome"]
+                            notas = alunos[i]["notas"]
+                            break
+                    if not encontrado:
+                        RM = None
+                        erro = "Esse RM não existe. Tente novamente."
+        else:
+            print("Digite o RM do aluno: %d" % RM)
+            print("Nome do aluno: %s" % nome)
+            print("Notas do aluno:", ", ".join(map(str, notas)))
+            input("Pressione <enter> para continuar...")
+            break
 
 # ===========================
 # EXECUÇÃO
 # ===========================
 
-def main():
-    while True:
+while True:
 
-        limpar_tela()
-        mostrar_menu()
+    limpar_tela()
+    mostrar_menu()
 
-        try:
-            escolhaMenu = int(input("Digite o número da ação escolhida: "))
+    try:
+        escolhaMenu = int(input("Digite o número da ação escolhida: "))
 
-            if escolhaMenu == 0:
-                encerrar()
-                break
-            elif escolhaMenu == 1:
-                cadastrar_aluno()
-                break
-            elif escolhaMenu == 2:
-                limpar_tela()
-                listar_alunos()
-            elif escolhaMenu == 3:
-                limpar_tela()
-                print("3 - Buscar aluno")
-                break
-            elif escolhaMenu == 4:
-                limpar_tela()
-                print("4 - Remover aluno")
-                break
-            elif escolhaMenu == 5:
-                limpar_tela()
-                print("5 - Média das notas")
-                break
-        except:
-            print("erro")
-
-main()
+        if escolhaMenu == 0:
+            encerrar()
+            break
+        elif escolhaMenu == 1:
+            cadastrar_aluno()
+        elif escolhaMenu == 2:
+            limpar_tela()
+            listar_alunos()
+        elif escolhaMenu == 3:
+            limpar_tela()
+            buscar_aluno()
+        elif escolhaMenu == 4:
+            limpar_tela()
+            print("4 - Remover aluno")
+            break
+        elif escolhaMenu == 5:
+            limpar_tela()
+            print("5 - Média das notas")
+            break
+    except:
+        print("erro")
