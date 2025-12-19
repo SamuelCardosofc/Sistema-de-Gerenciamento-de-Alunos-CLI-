@@ -28,22 +28,7 @@ def encerrar():
 # FUNÇÕES DO CADASTRO DE ALUNO
 # ===========================
 
-# teste do loop
-# remover no futuro
 alunos = []
-
-alunos.append({
-    "RM": 123,
-    "nome": "Ana",
-    "notas": [7.5, 8.0, 9.0]
-})
-
-alunos.append({
-    "RM": 456,
-    "nome": "Beatriz",
-    "notas": [7.5, 8.0, 9.0]
-})
-
 
 def cadastrar_aluno():
     RM = None
@@ -105,12 +90,7 @@ def cadastrar_aluno():
                     print("Digite o nome do aluno: %s" % aluno["nome"])
 
                     if notas:
-                        print("Notas do aluno: ", end=" ")
-                        for i in range(0, len(notas)):
-                            if i == len(notas)-1:
-                                print(notas[i])
-                            else:
-                                print(notas[i], end=", ")
+                        print("Notas do aluno:", ", ".join(map(str, notas)))
 
                     nota = input("Digite a nota do aluno ou 'n' para parar: ")
 
@@ -133,6 +113,25 @@ def cadastrar_aluno():
     main()
 
 # ===========================
+# FUNÇÕES DO LISTAR ALUNOS
+# ===========================
+
+def listar_alunos():
+    limpar_tela()
+    print("2 - Listar alunos")
+
+    if len(alunos) != 0:
+        for i in range(0, len(alunos)):
+            print("%d" % alunos[i]["RM"], end=" ")
+            print(alunos[i]["nome"], end=" ")
+            print(", ".join(map(str, alunos[i]["notas"])))
+    else:
+        print("Nenhum aluno cadastrado.")
+
+    input("Pressione <enter> para continuar...")
+
+
+# ===========================
 # EXECUÇÃO
 # ===========================
 
@@ -153,8 +152,7 @@ def main():
                 break
             elif escolhaMenu == 2:
                 limpar_tela()
-                print("2 - Listar alunos")
-                break
+                listar_alunos()
             elif escolhaMenu == 3:
                 limpar_tela()
                 print("3 - Buscar aluno")
