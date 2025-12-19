@@ -1,8 +1,13 @@
-# Sistema de Gerenciamento de Alunos
+# Sistema de Gerenciamento de Alunos (CLI)
 
-Este projeto consiste em um sistema de gerenciamento de alunos
-desenvolvido em Python, com foco no aprendizado e prática de
-conceitos fundamentais da linguagem.
+Este projeto consiste em um **sistema de gerenciamento de alunos em modo terminal (CLI)**,
+desenvolvido em Python, com foco no aprendizado e na prática de conceitos fundamentais
+da linguagem e da lógica de programação.
+
+> ⚠️ **Observação:** Este sistema funciona exclusivamente no **terminal**, não possuindo
+interface gráfica.
+
+---
 
 ## Conceitos utilizados
 - Variáveis
@@ -14,20 +19,56 @@ conceitos fundamentais da linguagem.
 - Funções
 - Tratamento simples de erros (`try/except`)
 
+---
+
 ## Funcionalidades
-- Cadastrar aluno
-- Listar alunos
-- Buscar aluno
-- Remover aluno
-- Calcular média das notas
-- Sair do sistema
 
-## Cadastro de aluno
-Cada aluno possui:
+### 1️⃣ Cadastrar aluno
+Cada aluno possui as seguintes informações:
 - Nome
-- RA ou matrícula
-- Lista de notas (ex: 3 notas)
+- RM (RA ou matrícula)
+- Lista de notas
 
-Os dados dos alunos são armazenados em:
-- Um dicionário para cada aluno
-- Uma lista contendo todos os alunos cadastrados
+Os dados são armazenados utilizando:
+- Um **dicionário** para cada aluno
+- Uma **lista** contendo todos os alunos cadastrados
+
+---
+
+### 2️⃣ Listar alunos
+Mostra, para cada aluno:
+- RM
+- Nome
+- Média final das notas
+
+---
+
+### 3️⃣ Buscar aluno
+- Busca realizada pelo **RM**
+- Exibe os dados do aluno e suas notas
+- Caso o aluno não exista, o sistema exibe uma mensagem de aviso
+
+---
+
+### 4️⃣ Remover aluno
+- Remoção realizada pelo **RM**
+- Solicita confirmação antes de apagar o aluno
+
+---
+
+### 5️⃣ Média das notas
+- Calcula a média das notas de um aluno específico
+- Avisa se o aluno está aprovado ou não, aprovado >= 6, reprovado < 6
+
+---
+
+### 0️⃣ Sair do sistema
+- Encerra a execução do programa
+
+---
+
+## Execução do projeto
+Para executar o sistema, utilize o comando abaixo no terminal:
+
+```bash
+python main.py
