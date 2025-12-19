@@ -180,6 +180,49 @@ def buscar_aluno():
             break
 
 # ===========================
+# FUNÇÕES DO REMOVER ALUNO
+# ===========================
+
+def remover_aluno():
+    erro = ""
+    while True:
+        encontrado = False
+        limpar_tela()
+        print("4 - Remover aluno")
+        if erro != "":
+            print(erro)
+            erro = ""
+
+        if not alunos:
+            print("Nenhum aluno cadastrado.")
+            input("Pressione Enter para voltar...")
+            break
+
+        try:
+            RM = float(input("Digite o RM do aluno a remover: "))
+        except:
+            erro = "RM deve ser numérico."
+            RM = None
+
+        if type(RM) == float:
+            if RM <= 0:
+                erro = "Digite um valor válido para RM. Tente novamente."
+                RM = None
+            else:
+                for i in range(0, len(alunos)):
+                    if alunos[i]["RM"] == RM:
+                        encontrado = True
+                        alunos.pop(i)
+                        print("Aluno removido com sucesso.")
+                        input("Pressione Enter para voltar...")
+                        break
+                if not encontrado:
+                    erro = "Aluno não encontrado"
+                    RM = None
+                else:
+                    break
+
+# ===========================
 # EXECUÇÃO
 # ===========================
 
@@ -204,8 +247,7 @@ while True:
             buscar_aluno()
         elif escolhaMenu == 4:
             limpar_tela()
-            print("4 - Remover aluno")
-            break
+            remover_aluno()
         elif escolhaMenu == 5:
             limpar_tela()
             print("5 - Média das notas")
