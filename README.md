@@ -40,6 +40,7 @@ Mostra, para cada aluno:
 - RM
 - Nome
 - Média final das notas
+- Situação do aluno
 
 ---
 
@@ -53,12 +54,6 @@ Mostra, para cada aluno:
 ### 4️⃣ Remover aluno
 - Remoção realizada pelo **RM**
 - Solicita confirmação antes de apagar o aluno
-
----
-
-### 5️⃣ Média das notas
-- Calcula a média das notas de um aluno específico
-- Avisa se o aluno está aprovado ou não, aprovado >= 6, reprovado < 6
 
 ---
 

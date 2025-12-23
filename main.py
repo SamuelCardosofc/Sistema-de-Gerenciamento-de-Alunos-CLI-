@@ -13,7 +13,6 @@ def mostrar_menu():
     print("2 - Listar alunos")
     print("3 - Buscar aluno")
     print("4 - Remover aluno")
-    print("5 - Média das notas")
     print("0 - Sair")
 # ===========================
 # FUNÇÕES DO ENCERRAMENTO
@@ -125,13 +124,23 @@ def listar_alunos():
 
     if len(alunos) != 0:
         for i in range(0, len(alunos)):
+            media = 0
+            situacao = ""
             print("%d" % alunos[i]["RM"], end=" ")
             print(alunos[i]["nome"], end=" ")
-            print(", ".join(map(str, alunos[i]["notas"])))
+
+            for j in range(0, len(alunos[i]["notas"])):
+                media += alunos[i]["notas"][j]
+            if media <6:
+                situacao = "reprovado"
+            else:
+                situacao = "aprovado"
+
+            print(situacao)
     else:
         print("Nenhum aluno cadastrado.")
 
-    input("Pressione <enter> para continuar...")
+    input("Pressione Enter para continuar...")
 
 # ===========================
 # FUNÇÕES DO BUSCAR ALUNO
@@ -146,6 +155,12 @@ def buscar_aluno():
     while True:
         limpar_tela()
         print("3 - Buscar aluno")
+
+        if not alunos:
+            print("Nenhum aluno cadastrado.")
+            input("Pressione Enter para voltar...")
+            break
+
         if erro != "":
             print(erro)
             erro = ""
@@ -248,9 +263,5 @@ while True:
         elif escolhaMenu == 4:
             limpar_tela()
             remover_aluno()
-        elif escolhaMenu == 5:
-            limpar_tela()
-            print("5 - Média das notas")
-            break
     except:
         print("erro")
