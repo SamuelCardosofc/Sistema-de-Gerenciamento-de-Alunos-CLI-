@@ -7,6 +7,8 @@ da linguagem e da lógica de programação.
 > ⚠️ **Observação:** Este sistema funciona exclusivamente no **terminal**, não possuindo
 interface gráfica.
 
+> 📚 **Projeto educacional**: desenvolvido com fins de estudo e prática de programação.
+
 ---
 
 ## Conceitos utilizados
@@ -40,7 +42,7 @@ Mostra, para cada aluno:
 - RM
 - Nome
 - Média final das notas
-- Situação do aluno
+- Situação do aluno (aprovado/reprovado)
 
 ---
 
