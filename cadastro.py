@@ -5,7 +5,7 @@ import utils
 # ===========================
 
 def mostrar_menu():
-    print(" --- Sistema de alunos ---")
+    print("Sistema de Gerenciamento de Alunos - v0.6.2")
     print("1 - Cadastrar aluno")
     print("2 - Listar alunos")
     print("3 - Buscar aluno")
@@ -26,89 +26,60 @@ def encerrar():
 
 
 def cadastrar_aluno(alunos):
-    RM = None
-    nome = None
-    notas = []
-    nota = None
-    erro = ""
-    jaTem = False
     aluno = {}
+    notas = []
+    erro = ""
 
-    #loop do cadastrar
+    # -------- RM --------
     while True:
         utils.limpar_tela()
-        print("1 - Cadastrar aluno")
-        if RM != None:
-            print("Digite o nome do aluno: ", RM)
+        print("1 - Cadastrar aluno\n")
+        utils.mostra_erro(erro)
 
-        # loop de validação e adição do RM
-        while True:
-            utils.limpar_tela()
-            print("1 - Cadastrar aluno")
-            if erro != "":
-                print(erro)
-                erro = ""
+        rm_input = input("Digite o RM do aluno: ")
+        valido, rm, erro = utils.validar_cadastro_rm(rm_input, alunos)
 
-            if RM == None:
-                #validações do RM
-                try:
-                    RM = float(input("Digite o RM do aluno: "))
-                except:
-                    erro = "Digite um número pro RM. Tente novamente."
-                    RM = None
+        if valido:
+            aluno["RM"] = rm
+            break
 
-                if type(RM) == float:
-                    if RM <= 0:
-                        erro = "Digite um valor válido para RM. Tente novamente."
-                        RM = None
-                    else:
-                        for i in range(0, len(alunos)):
-                            if RM == alunos[i]["RM"]:
-                                jaTem = True
-                                RM = None
-                                erro = "Esse RM já existe. Tente novamente."
-                                break
-                        if not jaTem:
-                            aluno["RM"] = RM
-                        else:
-                            jaTem = False
-            else:
-                print("Digite o RM do aluno: %d" % aluno["RM"])
+    # -------- NOME --------
+    while True:
+        utils.limpar_tela()
+        print("1 - Cadastrar aluno\n")
+        print(f"RM: {aluno['RM']}")
+        utils.mostra_erro(erro)
 
-                if nome == None :
-                    #validações do nome
+        nome_input = input("Digite o nome do aluno: ")
+        valido, nome, erro = utils.validar_nome(nome_input)
 
-                    nome = input("Digite o nome do aluno: ")
-                    if nome == "":
-                        nome = None
-                        erro = "Nome do aluno não pode estar vazio. Tente novamente."
-                    else:
-                        aluno["nome"] = nome
+        if valido:
+            aluno["nome"] = nome
+            break
 
-                else:
-                    print("Digite o nome do aluno: %s" % aluno["nome"])
+    # -------- NOTAS --------
+    while True:
+        utils.limpar_tela()
+        print("1 - Cadastrar aluno\n")
+        print(f"RM: {aluno['RM']}")
+        print(f"Aluno: {aluno['nome']}")
+        utils.mostra_erro(erro)
 
-                    if notas:
-                        print("Notas do aluno:", ", ".join(map(str, notas)))
+        if notas:
+            print("Notas:", ", ".join(map(str, notas)))
 
-                    nota = input("Digite a nota do aluno ou 'n' para parar: ")
+        nota_input = input("Digite a nota ou 'n' para finalizar: ")
 
-                    if nota.lower() == "n":
-                        break
+        if nota_input.lower() == "n":
+            break
 
-                    try:
-                        nota = float(nota)
+        valido, nota, erro = utils.validar_nota(nota_input)
+        if valido:
+            notas.append(nota)
 
-                        if nota < 0 or nota > 10:
-                            erro = "Digite uma nota válida (0 a 10)."
-                        else:
-                            notas.append(nota)
-                            aluno["notas"] = notas
+    aluno["notas"] = notas
+    alunos.append(aluno)
 
-                    except:
-                        erro = "Entrada inválida. Digite um número ou 'n'."
-        utils.alunos.append(aluno)
-        break
 
 # ===========================
 # FUNÇÕES DO LISTAR ALUNOS
@@ -139,47 +110,30 @@ def listar_alunos(alunos):
 # ===========================
 
 def buscar_aluno(alunos):
+    erro = ""
+    utils.limpar_tela()
+    print("3 - Buscar aluno\n")
+    if not alunos:
+        print("Nenhum aluno cadastrado.")
+        input("Pressione Enter para voltar...")
+        return
+
     while True:
         utils.limpar_tela()
-        print("3 - Buscar aluno")
+        print("3 - Buscar aluno\n")
+        utils.mostra_erro(erro)
 
-        if not alunos:
-            print("Nenhum aluno cadastrado.")
-            input("Pressione Enter para voltar...")
-            break
+        rm_input = input("Digite o RM do aluno: ")
 
-        if erro != "":
-            print(erro)
-            erro = ""
+        valido, rm, erro = utils.validar_rm_basico(rm_input)
+        if valido:
+            valido, aluno, erro = utils.aluno_existe(rm, alunos)
+            if valido:
+                break
 
-        if RM == None:
-            # validações do RM
-            try:
-                RM = float(input("Digite o RM do aluno: "))
-            except:
-                erro = "Digite um número pro RM. Tente novamente."
-                RM = None
-
-            if type(RM) == float:
-                if RM <= 0:
-                    erro = "Digite um valor válido para RM. Tente novamente."
-                    RM = None
-                else:
-                    for i in range(0, len(alunos)):
-                        if RM == alunos[i]["RM"]:
-                            encontrado = True
-                            nome = alunos[i]["nome"]
-                            notas = alunos[i]["notas"]
-                            break
-                    if not encontrado:
-                        RM = None
-                        erro = "Esse RM não existe. Tente novamente."
-        else:
-            print("Digite o RM do aluno: %d" % RM)
-            print("Nome do aluno: %s" % nome)
-            print("Notas do aluno:", ", ".join(map(str, notas)))
-            input("Pressione <enter> para continuar...")
-            break
+    print("Nome do aluno: %s" % aluno["nome"])
+    print("Notas do aluno:", ", ".join(map(str, aluno["notas"])))
+    input("Pressione Enter para continuar...")
 
 # ===========================
 # FUNÇÕES DO REMOVER ALUNO
@@ -187,39 +141,26 @@ def buscar_aluno(alunos):
 
 def remover_aluno(alunos):
     erro = ""
+    utils.limpar_tela()
+    print("4 - Remover Aluno\n")
+    if not alunos:
+        print("Nenhum aluno cadastrado.")
+        input("Pressione Enter para voltar...")
+        return
+
     while True:
-        encontrado = False
         utils.limpar_tela()
-        print("4 - Remover aluno")
-        if erro != "":
-            print(erro)
-            erro = ""
+        print("4 - Remover aluno\n")
+        utils.mostra_erro(erro)
 
-        if not alunos:
-            print("Nenhum aluno cadastrado.")
-            input("Pressione Enter para voltar...")
-            break
+        rm_input = input("Digite o RM do aluno: ")
+        valido, rm, erro = utils.validar_rm_basico(rm_input)
+        if valido:
+            valido, aluno, erro = utils.aluno_existe(rm, alunos)
+            if valido:
+                break
 
-        try:
-            RM = float(input("Digite o RM do aluno a remover: "))
-        except:
-            erro = "RM deve ser numérico."
-            RM = None
 
-        if type(RM) == float:
-            if RM <= 0:
-                erro = "Digite um valor válido para RM. Tente novamente."
-                RM = None
-            else:
-                for i in range(0, len(alunos)):
-                    if alunos[i]["RM"] == RM:
-                        encontrado = True
-                        alunos.pop(i)
-                        print("Aluno removido com sucesso.")
-                        input("Pressione Enter para voltar...")
-                        break
-                if not encontrado:
-                    erro = "Aluno não encontrado"
-                    RM = None
-                else:
-                    break
+    alunos.remove(aluno)
+    print("Aluno removido com sucesso.")
+    input("Pressione Enter para voltar...")
