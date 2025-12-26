@@ -1,71 +1,119 @@
-# Sistema de Gerenciamento de Alunos (CLI)
+Sistema de Gerenciamento de Alunos (CLI)
 
-Este projeto consiste em um **sistema de gerenciamento de alunos em modo terminal (CLI)**,
-desenvolvido em Python, com foco no aprendizado e na prática de conceitos fundamentais
-da linguagem e da lógica de programação.
+Este projeto consiste em um sistema de gerenciamento de alunos em modo terminal (CLI),
+desenvolvido em Python, com foco no aprendizado, prática de lógica de programação
+e organização de código.
 
-> ⚠️ **Observação:** Este sistema funciona exclusivamente no **terminal**, não possuindo
-interface gráfica.
+⚠️ Observação: Este sistema funciona exclusivamente no terminal e não possui interface gráfica.
 
-> 📚 **Projeto educacional**: desenvolvido com fins de estudo e prática de programação.
+📚 Projeto educacional: desenvolvido com fins de estudo, prática e evolução gradual do código.
 
----
+🎯 Objetivos do projeto
 
-## Conceitos utilizados
-- Variáveis
-- Entrada e saída de dados (`input`, `print`)
-- Estruturas condicionais (`if`, `elif`, `else`)
-- Laços de repetição (`while`, `for`)
-- Listas
-- Dicionários
-- Funções
-- Tratamento simples de erros (`try/except`)
+Praticar lógica de programação
 
----
+Trabalhar com estruturas de dados
 
-## Funcionalidades
+Aprender organização e refatoração de código
 
-### 1️⃣ Cadastrar aluno
+Simular um sistema simples de gerenciamento
+
+🧠 Conceitos utilizados
+
+Variáveis
+
+Entrada e saída de dados (input, print)
+
+Estruturas condicionais (if, elif, else)
+
+Laços de repetição (while, for)
+
+Listas
+
+Dicionários
+
+Funções
+
+Modularização de código (múltiplos arquivos)
+
+Tratamento simples de erros (try/except)
+
+🧱 Estrutura do projeto (refatoração)
+
+O projeto foi refatorado para melhorar a organização, legibilidade e manutenção do código.
+
+Cada funcionalidade foi separada em funções e arquivos específicos,
+seguindo boas práticas de organização.
+
+⚙️ Funcionalidades
+
+1️⃣ Cadastrar aluno
+
 Cada aluno possui as seguintes informações:
-- Nome
-- RM (RA ou matrícula)
-- Lista de notas
+
+Nome
+
+RM (RA ou matrícula)
+
+Lista de notas
 
 Os dados são armazenados utilizando:
-- Um **dicionário** para cada aluno
-- Uma **lista** contendo todos os alunos cadastrados
 
----
+Um dicionário para cada aluno
 
-### 2️⃣ Listar alunos
-Mostra, para cada aluno:
-- RM
-- Nome
-- Média final das notas
-- Situação do aluno (aprovado/reprovado)
+Uma lista contendo todos os alunos cadastrados
 
----
+Durante o cadastro, o sistema:
 
-### 3️⃣ Buscar aluno
-- Busca realizada pelo **RM**
-- Exibe os dados do aluno e suas notas
-- Caso o aluno não exista, o sistema exibe uma mensagem de aviso
+Valida o RM
 
----
+Evita RMs duplicados
 
-### 4️⃣ Remover aluno
-- Remoção realizada pelo **RM**
-- Solicita confirmação antes de apagar o aluno
+Valida as notas inseridas
 
----
+2️⃣ Listar alunos
 
-### 0️⃣ Sair do sistema
-- Encerra a execução do programa
+Exibe todos os alunos cadastrados, mostrando:
 
----
+RM
 
-## Execução do projeto
+Nome
+
+Média final das notas
+
+Situação do aluno (Aprovado ou Reprovado)
+
+3️⃣ Buscar aluno
+
+Busca realizada pelo RM
+
+Exibe:
+
+Nome
+
+RM
+
+Notas
+
+Média
+
+Situação
+
+Caso o aluno não exista, o sistema exibe uma mensagem de aviso
+
+4️⃣ Remover aluno
+
+Remoção realizada pelo RM
+
+Exibe mensagem de sucesso ou erro
+
+0️⃣ Sair do sistema
+
+Encerra a execução do programa de forma segura
+
+▶️ Execução do projeto
+
 Para executar o sistema, utilize o comando abaixo no terminal:
 
-```bash
+``` bash
 python main.py

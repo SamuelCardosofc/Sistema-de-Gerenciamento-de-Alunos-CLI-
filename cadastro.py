@@ -131,8 +131,11 @@ def buscar_aluno(alunos):
             if valido:
                 break
 
-    print("Nome do aluno: %s" % aluno["nome"])
+    media, situacao = utils.calcular_media_e_situacao(aluno["notas"])
+    print(f"Nome: {aluno['nome']}")
     print("Notas do aluno:", ", ".join(map(str, aluno["notas"])))
+    print(f"Média: {media:.1f}")
+    print(f"Situação: {situacao}")
     input("Pressione Enter para continuar...")
 
 # ===========================
