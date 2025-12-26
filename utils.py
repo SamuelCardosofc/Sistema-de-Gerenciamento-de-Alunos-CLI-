@@ -63,7 +63,6 @@ def validar_nota(nota):
             return False, None, erro
         else:
             return True, nota, ""
-
     except:
         erro = "Entrada inválida. Digite um número ou 'n'."
         return False, None, erro

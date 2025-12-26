@@ -1,7 +1,11 @@
 import cadastro
 import utils
+import storage
 
-alunos = []
+
+CAMINHO_ARQUIVO = "alunos.json"
+
+alunos = storage.carregar_dados(CAMINHO_ARQUIVO)
 erro = ""
 
 while True:

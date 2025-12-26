@@ -18,6 +18,8 @@ Aprender organização e refatoração de código
 
 Simular um sistema simples de gerenciamento
 
+Introduzir persistência de dados em arquivos
+
 🧠 Conceitos utilizados
 
 Variáveis
@@ -38,15 +40,48 @@ Modularização de código (múltiplos arquivos)
 
 Tratamento simples de erros (try/except)
 
+Manipulação de arquivos JSON
+
 🧱 Estrutura do projeto (refatoração)
 
 O projeto foi refatorado para melhorar a organização, legibilidade e manutenção do código.
 
-Cada funcionalidade foi separada em funções e arquivos específicos,
-seguindo boas práticas de organização.
+As responsabilidades foram separadas em arquivos distintos, como:
+
+Arquivo principal (main.py)
+
+Arquivos de funcionalidades (cadastro, busca, listagem, remoção)
+
+Arquivo utilitário (utils)
+
+Arquivo de persistência de dados (storage)
+
+Essa separação facilita futuras manutenções e novas funcionalidades.
+
+💾 Persistência de dados (JSON)
+
+O sistema utiliza um arquivo JSON para armazenar os dados dos alunos.
+
+Os dados são carregados automaticamente ao iniciar o programa
+
+As alterações (cadastro e remoção) são salvas no arquivo
+
+O sistema trata casos em que o arquivo não existe ou está vazio
+
+📄 Exemplo de estrutura do arquivo alunos.json:
+
+[
+  {
+    "RM": 123,
+    "nome": "Ana",
+    "notas": [7.5, 8.0, 9.0]
+  }
+]
+
+
+O arquivo pode iniciar vazio ([]) e será preenchido conforme o uso do sistema.
 
 ⚙️ Funcionalidades
-
 1️⃣ Cadastrar aluno
 
 Cada aluno possui as seguintes informações:
@@ -56,12 +91,6 @@ Nome
 RM (RA ou matrícula)
 
 Lista de notas
-
-Os dados são armazenados utilizando:
-
-Um dicionário para cada aluno
-
-Uma lista contendo todos os alunos cadastrados
 
 Durante o cadastro, o sistema:
 
@@ -105,7 +134,7 @@ Caso o aluno não exista, o sistema exibe uma mensagem de aviso
 
 Remoção realizada pelo RM
 
-Exibe mensagem de sucesso ou erro
+Exibe mensagem de sucesso ou RM inexistente 
 
 0️⃣ Sair do sistema
 

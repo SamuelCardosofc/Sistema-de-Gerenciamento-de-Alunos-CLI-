@@ -1,4 +1,5 @@
 import utils
+import storage
 
 # ===========================
 # FUNÇÕES DE MENU
@@ -29,6 +30,7 @@ def cadastrar_aluno(alunos):
     aluno = {}
     notas = []
     erro = ""
+    CAMINHO_ARQUIVO = "alunos.json"
 
     # -------- RM --------
     while True:
@@ -79,6 +81,7 @@ def cadastrar_aluno(alunos):
 
     aluno["notas"] = notas
     alunos.append(aluno)
+    storage.salvar_dados(alunos, CAMINHO_ARQUIVO)
 
 
 # ===========================
@@ -144,6 +147,7 @@ def buscar_aluno(alunos):
 
 def remover_aluno(alunos):
     erro = ""
+    CAMINHO_ARQUIVO = "alunos.json"
     utils.limpar_tela()
     print("4 - Remover Aluno\n")
     if not alunos:
@@ -165,5 +169,6 @@ def remover_aluno(alunos):
 
 
     alunos.remove(aluno)
+    storage.salvar_dados(alunos, CAMINHO_ARQUIVO)
     print("Aluno removido com sucesso.")
     input("Pressione Enter para voltar...")
